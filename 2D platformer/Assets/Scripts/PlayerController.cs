@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Health script;
+
     private Rigidbody2D rb;
     public float speed;
     public float jumpForce;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
     public GameObject FirePoint;
+    public int damageAmount;
 
     void Start()
     {
@@ -31,6 +34,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        // take damage function testing
+        if (Input.GetKeyDown("j"))
+        {
+            TakeDamage(1);
+        }
+        // take damage function testing
+
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
 
         if (moveInput > 0)
@@ -67,4 +78,13 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
     }
+
+    
+
+    public void TakeDamage(int damageAmount)
+    {
+       script.health -= damageAmount;
+    }
+
+
 }
